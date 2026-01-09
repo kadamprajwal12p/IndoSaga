@@ -8,7 +8,8 @@ import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, Loader2, X } from "lucide-react";
 
 // Load Stripe outside of a component's render to avoid recreating the Stripe object
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || '');
+const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
+const stripePromise = stripePublicKey ? loadStripe(stripePublicKey) : Promise.resolve(null);
 
 interface StripePaymentModalProps {
   isOpen: boolean;
@@ -30,14 +31,14 @@ interface StripePaymentModalProps {
   onPaymentSuccess: (orderData: any) => void;
 }
 
-function CheckoutForm({ 
-  productId, 
-  productName, 
-  productPrice, 
-  quantity, 
-  customerDetails, 
-  onPaymentSuccess, 
-  onClose 
+function CheckoutForm({
+  productId,
+  productName,
+  productPrice,
+  quantity,
+  customerDetails,
+  onPaymentSuccess,
+  onClose
 }: Omit<StripePaymentModalProps, 'isOpen'>) {
   const stripe = useStripe();
   const elements = useElements();
@@ -52,7 +53,7 @@ function CheckoutForm({
         const response = await fetch("/api/create-payment-intent", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ 
+          body: JSON.stringify({
             productId,
             quantity,
             currency: 'inr'
@@ -196,7 +197,7 @@ function CheckoutForm({
         <div className="p-4 border rounded-lg">
           <PaymentElement />
         </div>
-        
+
         <div className="flex gap-3">
           <Button
             type="button"
@@ -261,7 +262,7 @@ export default function StripePaymentModal(props: StripePaymentModalProps) {
             Secure Payment
           </DialogTitle>
         </DialogHeader>
-        
+
         <Elements stripe={stripePromise} options={stripeOptions}>
           <CheckoutForm {...props} />
         </Elements>
