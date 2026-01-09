@@ -12,3 +12,9 @@
   to = "https://your-cpanel-domain.com/api/:splat"
   status = 200
   force = false
+
+[[redirects]]
+  from = "/images/*"
+  to = "https://your-cpanel-domain.com/images/:splat"
+  status = 200
+  force = false
