@@ -2,19 +2,23 @@
   command = "npm run build"
   publish = "dist/public"
 
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[_redirects]]
+  # Proxy API requests to cPanel backend (replace domain)
+  [[redirects]]
+    from = "/api/*"
+    to = "https://your-cpanel-domain.com/api/:splat"
+    status = 200
+    force = false
 
-[[redirects]]
-  from = "/api/*"
-  to = "https://your-cpanel-domain.com/api/:splat"
-  status = 200
-  force = false
+  # Proxy image requests to cPanel (replace domain)
+  [[redirects]]
+    from = "/images/*"
+    to = "https://your-cpanel-domain.com/images/:splat"
+    status = 200
+    force = false
 
-[[redirects]]
-  from = "/images/*"
-  to = "https://your-cpanel-domain.com/images/:splat"
-  status = 200
-  force = false
+  # SPA fallback — keep last to avoid overriding API/image proxies
+  [[redirects]]
+    from = "/*"
+    to = "/index.html"
+    status = 200
