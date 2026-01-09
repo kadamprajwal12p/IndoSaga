@@ -4,6 +4,9 @@
  * POST /api/contact - Send contact form
  */
 
+// Add CORS headers
+require_once __DIR__ . '/../../php/config/cors.php';
+
 require_once __DIR__ . '/../../database/mysql_connection.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {

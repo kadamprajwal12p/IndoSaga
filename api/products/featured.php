@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Featured Products API
  * GET /api/products/featured

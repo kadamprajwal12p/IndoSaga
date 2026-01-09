@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Categories API
  * GET /api/categories - Get all categories

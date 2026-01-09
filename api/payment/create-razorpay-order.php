@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Create Razorpay Order API
  * POST /api/create-razorpay-order

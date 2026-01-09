@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Check Authentication Status
  * GET /api/auth/me

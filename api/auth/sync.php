@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Sync Auth0 User with Server Session
  * POST /api/auth/sync - SECURE VERSION

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Wishlist API
  * GET /api/wishlist - Get wishlist items for authenticated user

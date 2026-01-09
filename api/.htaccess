@@ -1,3 +1,10 @@
+SetEnv FRONTEND_URL "https://your-netlify-site.netlify.app"
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "https://your-netlify-site.netlify.app"
+  Header set Access-Control-Allow-Methods "GET,POST,OPTIONS,PUT,DELETE"
+  Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+  Header set Access-Control-Allow-Credentials "true"
+</IfModule>
 # API Directory Configuration - SECURE VERSION
 RewriteEngine On
 

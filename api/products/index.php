@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Products API - FIXED VERSION
  * GET /api/products - Get all products with filters

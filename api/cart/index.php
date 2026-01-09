@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Cart API
  * GET /api/cart - Get cart items for authenticated user

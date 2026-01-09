@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Subcategories API
  * GET /api/subcategories - Get subcategories (optionally filtered by categoryId)

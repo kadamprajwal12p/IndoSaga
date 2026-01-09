@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Product Reviews API
  * GET /api/products/:productId/reviews - Get reviews for a product

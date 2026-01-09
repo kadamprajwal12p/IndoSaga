@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Product Questions API
  * GET /api/products/:productId/questions - Get questions for a product

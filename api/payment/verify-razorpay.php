@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Verify Razorpay Payment API
  * POST /api/verify-razorpay-payment

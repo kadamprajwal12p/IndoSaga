@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../../php/config/cors.php';
 /**
  * Direct Checkout Orders API
  * POST /api/orders/direct-checkout
