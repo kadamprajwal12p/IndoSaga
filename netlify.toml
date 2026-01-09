@@ -10,13 +10,6 @@
     status = 200
     force = false
 
-  # Proxy image requests to cPanel (replace domain)
-  [[redirects]]
-    from = "/images/*"
-    to = "https://your-cpanel-domain.com/images/:splat"
-    status = 200
-    force = false
-
   # SPA fallback — keep last to avoid overriding API/image proxies
   [[redirects]]
     from = "/*"

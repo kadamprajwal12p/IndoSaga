@@ -9,6 +9,7 @@ const __dirname = path.dirname(__filename);
 
 export default defineConfig({
   base: './',
+  publicDir: path.resolve(__dirname, "public"),
   plugins: [
     react(),
     runtimeErrorOverlay(),
