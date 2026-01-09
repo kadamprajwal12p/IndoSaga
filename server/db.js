@@ -16,6 +16,10 @@ class Database {
 
   async init() {
     try {
+      if (!process.env.DBHOST || !process.env.DBUSER) {
+        console.log('⚠️ MySQL credentials missing, skipping connection.');
+        return;
+      }
       // Create connection pool for better performance
       this.pool = mysql.createPool({
         host: process.env.DBHOST,
@@ -25,19 +29,20 @@ class Database {
         waitForConnections: true,
         connectionLimit: 10,
         queueLimit: 0,
-        acquireTimeout: 60000,
-        timeout: 60000,
+        acquireTimeout: 10000, // Reduced for serverless
+        timeout: 10000,
         reconnect: true,
         charset: 'utf8mb4'
       });
 
-      // Test the connection
+      // Test the connection with a short timeout
       const connection = await this.pool.getConnection();
       console.log(`✅ MySQL connected successfully to ${process.env.DBHOST}/${process.env.DBDATABASE}`);
       connection.release();
     } catch (error) {
-      console.error('❌ MySQL connection failed:', error.message);
-      throw error;
+      console.warn('⚠️ MySQL connection failed (graceful):', error.message);
+      // We don't throw here to avoid crashing the server/lambda
+      this.pool = null;
     }
   }
 
