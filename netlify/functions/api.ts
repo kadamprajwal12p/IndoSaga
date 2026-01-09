@@ -11,9 +11,23 @@ let initialized = false;
 const serverlessHandler = serverless(app);
 
 export const handler: any = async (event: any, context: any) => {
-    if (!initialized) {
-        await registerRoutes(app);
-        initialized = true;
+    try {
+        if (!initialized) {
+            console.log("Initializing lambda...");
+            await registerRoutes(app);
+            initialized = true;
+            console.log("Lambda initialized successfully.");
+        }
+        return await serverlessHandler(event, context);
+    } catch (error: any) {
+        console.error("LAMBDA_ERROR:", error);
+        return {
+            statusCode: 502,
+            body: JSON.stringify({
+                message: "Internal Server Error in Lambda",
+                error: error.message,
+                stack: error.stack
+            })
+        };
     }
-    return serverlessHandler(event, context);
 };
